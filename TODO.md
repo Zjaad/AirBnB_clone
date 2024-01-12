@@ -1,11 +1,11 @@
 # todo List:
 
-- [x] Task n0 -> zakaria
-- [] Task n1 ->
-- [] Task n2 ->
-- [] Task n3 ->
-- [] Task n4 -> 
-- [] Task n5 ->
+- [x] Task n0 -> z
+- [x] Task n1 -> z
+- [x] Task n2 -> z
+- [x] Task n3 -> z
+- [-] Task n4 -> z
+- [-] Task n5 -> h
 - [] Task n6 ->
 - [] Task n7 ->
 - [] Task n8 ->
