@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ This module represente all classes of the project. """
+from models import storage
 import uuid
 from datetime import datetime
 
@@ -21,6 +22,8 @@ class BaseModel:
     def save(self):
         """ updates the public inst attribute update_at. """
         self.updated_at = datetime.now()
+        storage.save()
+        storage.new(self)
 
     def to_dict(self):
         """ it returns a dictionary that 
