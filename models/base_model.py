@@ -4,9 +4,9 @@ import uuid
 from datetime import datetime
 
 
-class BaseModel(self, *arg, **kwargs):
+class BaseModel:
     """ the basemodel class. """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """ initializitaion of new Basemodel inst. """
         if not kwargs:
             self.id = str(uuid.uuid4())
