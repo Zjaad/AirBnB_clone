@@ -23,6 +23,9 @@ class HBNBCommand(cmd.Cmd):
     # def do_help(self, arg):
     #    """ Help. """
      #   cmd.Cmd.do_help(self,arg)
+   # def create(self, arg):
+        #newInst =
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
