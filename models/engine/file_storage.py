@@ -5,9 +5,8 @@ import json
 
 
 class FileStorage:
-    """ FileStorage that serializes instances to 
+    """ FileStorage that serializes instances to
     a JSON file and deserializes JSON file to instances"""
-    
     __file_path = "file.json"
     __objects = {}
 
@@ -16,7 +15,7 @@ class FileStorage:
         return(self.__objects)
 
     def new(self, obj):
-        """ it sets the obj in __objects 
+        """ it sets the obj in __objects
         with key the obj. """
         className = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[className] = obj
@@ -24,14 +23,14 @@ class FileStorage:
     def save(self):
         """ It serializes __objects to JSON file. """
         srl = {i: y.to_dict() for i, y in self.__objects.items()}
-        try: 
+        try:
             with open(self.__file_path, 'w', encoding="utf-8") as file:
                 json.dump(srl, file)
         except Exception:
                 pass
 
     def reload(self):
-        """ It deserializes the JSON file to __objects 
+        """ It deserializes the JSON file to __objects
         only if the JSON file (__file_path) exists. """
         try :
             with open(self.__file_path, 'r') as file:
