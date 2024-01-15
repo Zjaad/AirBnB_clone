@@ -36,10 +36,11 @@ class HBNBCommand(cmd.Cmd):
      #   cmd.Cmd.do_help(self,arg)
     def create(self, arg):
         """Creating a new instance of Basemodel. """    
-        arglenth = parse(arg)
-        if len(arglenth) == 0:
+        arglenth = arg.split()
+        larg = len(arglenth)
+        if larg == 0:
             print("** class name missing **")
-        elif arglenth[0] not in HBNBCommand.__classes:
+        elif arglenth[0] not in cls:
             print("** class doesn't exist **")
         else:
             print(eval(arglenth[0])().id)
@@ -69,13 +70,13 @@ class HBNBCommand(cmd.Cmd):
         """ update. """
         argList = arg.split()
         larl = len(argList)
-        if className not in cls:
-            print("** class doesn't exist **")
-            return
         if larl == 0:
             print("** class name missing **")
             return
         className = argList[0]
+        if className not in cls:
+            print("** class doesn't exist **")
+            return
         if larl == 1:
             print("** instance id missing **")
             return
@@ -148,11 +149,11 @@ class HBNBCommand(cmd.Cmd):
         if className not in cls:
             print("** class doesn't exist **")
             return
-        if len(argsp)< 2:
+        if len(argSp)< 2:
             print("** instance id missing **")
             return
 
-        insId = argspl[1]
+        insId = argsp[1]
         x = f"{className}.{insId}"
         objcDi = storage.all()
         objcSv = storage.save()
@@ -163,8 +164,6 @@ class HBNBCommand(cmd.Cmd):
 
         del objcDi[x]
         return(objcSv)
-
-
 
 
 
