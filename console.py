@@ -50,20 +50,20 @@ class HBNBCommand(cmd.Cmd):
         """ It prints all str of insts."""
         storedObjs = storage.all()
         argSp = arg.split()
-        if argSp:
-            className = argSp[0]
-            if className not in cls:
-                print("** class doesn't exist **")
-                return
-            sov = storedObjs.values()
-            instns = [x for x in sov if x.__class__.__name__ == className]
-            if not instns:
-                print("** no instance found **")
-            else:
-                for x in instns:
-                    print(x)
+        sov = storedObjs.values()
+        if not argSp:
+            for objc in sov:
+                print(objc)
+            return
+        className = argSp[0]
+        if className not in cls:
+            print("** class doesn't exist **")
+            return
+        instns = [x for x in sov if x.__class__.__name__ == className]
+        if not instns:
+            print("** no instance found **")
         else:
-            for x in sov:
+            for x in instns:
                 print(x)
 
     def update(self, arg):
@@ -153,7 +153,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
-        insId = argsp[1]
+        insId = argSp[1]
         x = f"{className}.{insId}"
         objcDi = storage.all()
         objcSv = storage.save()
@@ -165,6 +165,8 @@ class HBNBCommand(cmd.Cmd):
         del objcDi[x]
         return(objcSv)
 
+
+setattr(HBNBCommand, 'do_all', HBNBCommand.all)
 
 
 if __name__ == '__main__':
