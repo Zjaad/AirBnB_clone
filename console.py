@@ -44,6 +44,76 @@ class HBNBCommand(cmd.Cmd):
         else:
             print(eval(arglenth[0])().id)
             storage.save()
+    
+    def all(self, arg):
+        """ It prints all str of insts."""
+        storedObjs = storage.all()
+        argSp = arg.split()
+        if argSp:
+            className = argSp[0]
+            if className not in cls:
+                print("** class doesn't exist **")
+                return
+            sov = storedObjs.values()
+            instns = [x for x in sov if x.__class__.__name__ == className]
+            if not instns:
+                print("** no instance found **")
+            else:
+                for x in instns:
+                    print(x)
+        else:
+            for x in sov:
+                print(x)
+
+    def update(self, arg):
+        """ update. """
+        argList = arg.split()
+        larl = len(argList)
+        if className not in cls:
+            print("** class doesn't exist **")
+            return
+        if larl == 0:
+            print("** class name missing **")
+            return
+        className = argList[0]
+        if larl == 1:
+            print("** instance id missing **")
+            return
+        insId = argList[1]
+        p = "{}.{}".format(className, instId)
+        storedObjs = storage.all()
+
+        if p not in storedObjs:
+            print("** no instance found **")
+            return
+        if larl == 2:
+            print("** attribute name missing **")
+            return
+        atName = argList[2]
+
+        if larl == 3:
+            print("** value missing **")
+            return
+        atVal = argList[3]
+        ins = storedObjs[p]
+
+        if not hasattr(ins, atName):
+             print("** attribute doesn't exist for this instance **")
+             return
+
+        if atName in ["id", "created_at", "updated_at"]:
+             print("** can't update {} **".format(atName))
+             return
+        atType = type(getattr(ins, atName))
+        try:
+            cv = atType(atVal)
+        except ValueError:
+            print("** invalid value type for attribute {} **".format(attrName))
+            return
+        setattr(ins, atName, cv)
+        ins.save()
+
+
     def show(self, arg):
         """ show """
         argList = arg.split()
@@ -93,6 +163,8 @@ class HBNBCommand(cmd.Cmd):
 
         del objcDi[x]
         return(objcSv)
+
+
 
 
 
