@@ -26,7 +26,7 @@ class BaseModel:
         storage.new(self)
 
     def to_dict(self):
-        """ it returns a dictionary that 
+    """ it returns a dictionary that
         contains all keys n' values of __dict__of. """
         d = self.__dict__.copy()
         d['created_at'] = self.created_at.isoformat()
